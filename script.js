@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     const cards = document.querySelectorAll('.card');
     const nextButtons = document.querySelectorAll('.next');
-    const form = document.querySelector('form');
     const alertBox = document.createElement('div');
     alertBox.className = 'alert-box';
     document.body.appendChild(alertBox);
 
     let chosenCard = null; // Variable to store the chosen card from fieldset1
     let score = 0; // Variable to store the score
+    let chances = 5; // Variable to store the remaining chances
 
     const sampleData = [
         { id: 1, username: 'JohnDoe', score: 85, timestamp: '2024-06-01 10:30:00' },
@@ -76,31 +76,21 @@ document.addEventListener('DOMContentLoaded', function () {
     cards.forEach(card => {
         card.addEventListener('click', function () {
             if (this.closest('#fieldset1')) {
-                console.log(chosenCard);
                 if (chosenCard) {
                     chosenCard.classList.remove('highlighted'); // Remove highlight from previously chosen card
                 }
                 chosenCard = this; // Store the chosen card element
                 chosenCard.classList.add('highlighted'); // Add highlight to the chosen card
-                console.log('Chosen Card:', chosenCard.querySelector('img').alt); // Log the chosen card value
-                
             } else if (this.closest('#fieldset2')) {
                 const selectedCard = this.querySelector('img').alt;
-                console.log('Selected Card:', selectedCard); // Log the selected card value
                 const highlightedFlippedCard = document.querySelector('.card.highlighted.flipped[data-target="fieldset2"]');
                 const dataPoseValue = highlightedFlippedCard.getAttribute('data-pose');
-                
                 
                 if (chosenCard.querySelector('img').alt === selectedCard) {
                     score += 10; // Award points for the correct match
                     showAlert('Great! You have chosen the right pose. +10 points', 'success', chosenCard.querySelector('img').src);
-                    console.log(chosenCard)
-                    
                 } else {
-                    console.log(chosenCard)
                     showAlert('Oops! You have chosen the wrong pose. ' + dataPoseValue, 'error');
-
-
                 }
             }
 
@@ -113,20 +103,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
+
+        
+
     nextButtons.forEach(button => {
         button.addEventListener('click', function () {
             const target = this.getAttribute('data-target');
             document.querySelector('.fieldset.active').classList.remove('active');
             document.getElementById(target).classList.add('active');
         });
-    });
-
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        document.querySelector('.fieldset.active').classList.remove('active');
-        document.getElementById('fieldset6').classList.add('active');
-        populateScoreTable(sampleData);
-        displayFinalScore(); // Display the final score in fieldset6
     });
 
     function populateScoreTable(data) {
@@ -156,12 +142,11 @@ document.addEventListener('DOMContentLoaded', function () {
     populateScoreTable(sampleData);
     
     function displayChosenPose(poseName) {
-        const chosenPose = yogaPoses.find(pose => pose.posename === poseName
-);
+        const chosenPose = yogaPoses.find(pose => pose.posename === poseName);
         if (chosenPose) {
             document.getElementById('poseImage').src = chosenPose.poseimage;
             document.getElementById('poseName').textContent = chosenPose.posename;
-            document.getElementById('poseBenefits').textContent = chosenPose.benefits
+            document.getElementById('poseBenefits').textContent = chosenPose.benefits;
         }
     }
 
@@ -172,4 +157,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function shuffleCards() {
+    const fieldset2 = document.getElementById('fieldset2');
+    const card_holder = document.getElementById('card_holder');
+    const cards = Array.from(fieldset2.querySelectorAll('.card'));
+
+    const animationDuration = 1000; // Duration of the animation in milliseconds
+    const interval = animationDuration / cards.length; // Calculate the interval for each card
+
+    const shuffledCards = [...cards].sort(() => Math.random() - 0.5);
+
+    shuffledCards.forEach((card, index) => {
+        setTimeout(() => {
+            card_holder.appendChild(card);
+        }, index * interval);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    shuffleCards();
+});
+
 

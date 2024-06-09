@@ -60,40 +60,43 @@
                 </div>
             </div>
 
+
+            <div id="chancesLeft"></div>
+
             <div class="fieldset" id="fieldset2">
                 <h2>Find the Pose from below shuffled options</h2>
                 <!-- 6 Cards in a responsive 2 x 3 grid -->
-                <div class="row justify-content-center mt-5">
-                    <div class="col-6 col-md-2 mb-4">
-                        <div class="card" data-target="fieldset3" data-pose="Cobra Pose (Bhujangasana)" name="Cobra Pose (Bhujangasana)">
+                <div class="row justify-content-center mt-5 " id="card_holder">
+                    
+                        <div class="card col-6 col-md-2 mb-4" data-target="fieldset3" data-pose="Cobra Pose (Bhujangasana)" name="Cobra Pose (Bhujangasana)">
                             <img src="./assets/cardBackground.png" class="card-img-top" alt="Cobra Pose (Bhujangasana)">
                         </div>
-                    </div>
-                    <div class="col-6 col-md-2 mb-4">
-                        <div class="card" data-target="fieldset3" data-pose="Downward Facing Dog Pose (Adho Mukha Svanasana)" name="Downward Facing Dog Pose (Adho Mukha Svanasana)">
+                    
+                    
+                        <div class="card col-6 col-md-2 mb-4" data-target="fieldset3" data-pose="Downward Facing Dog Pose (Adho Mukha Svanasana)" name="Downward Facing Dog Pose (Adho Mukha Svanasana)">
                             <img src="./assets/cardBackground.png" class="card-img-top" alt="Downward Facing Dog Pose (Adho Mukha Svanasana)">
                         </div>
-                    </div>
-                    <div class="col-6 col-md-2 mb-4">
-                        <div class="card" data-target="fieldset3" data-pose="Lion Pose (Singhasana)" name="Lion Pose (Singhasana)">
+                    
+                    
+                        <div class="card col-6 col-md-2 mb-4" data-target="fieldset3" data-pose="Lion Pose (Singhasana)" name="Lion Pose (Singhasana)">
                             <img src="./assets/cardBackground.png" class="card-img-top" alt="Lion Pose (Singhasana)">
                         </div>
-                    </div>
-                    <div class="col-6 col-md-2 mb-4">
-                        <div class="card" data-target="fieldset3" data-pose="Child’s Pose (Balasana)" name="Child’s Pose (Balasana)">
+                     
+                    
+                        <div class="card col-6 col-md-2 mb-4" data-target="fieldset3" data-pose="Child’s Pose (Balasana)" name="Child’s Pose (Balasana)">
                             <img src="./assets/cardBackground.png" class="card-img-top" alt="Child’s Pose (Balasana)">
                         </div>
-                    </div>
-                    <div class="col-6 col-md-2 mb-4">
-                        <div class="card" data-target="fieldset3" data-pose="Cat-Cow Pose (Chakravakasana)" name="Cat-Cow Pose (Chakravakasana)">
+                     
+                    
+                        <div class="card col-6 col-md-2 mb-4" data-target="fieldset3" data-pose="Cat-Cow Pose (Chakravakasana)" name="Cat-Cow Pose (Chakravakasana)">
                             <img src="./assets/cardBackground.png" class="card-img-top" alt="Cat-Cow Pose (Chakravakasana)">
                         </div>
-                    </div>
-                    <div class="col-6 col-md-2 mb-4">
-                        <div class="card" data-target="fieldset3" data-pose="Yogic Sleep (Yoga Nidra)" name="Yogic Sleep (Yoga Nidra)">
+                     
+                    
+                        <div class="card col-6 col-md-2 mb-4" data-target="fieldset3" data-pose="Yogic Sleep (Yoga Nidra)" name="Yogic Sleep (Yoga Nidra)">
                             <img src="./assets/cardBackground.png" class="card-img-top" alt="Yogic Sleep (Yoga Nidra)">
                         </div>
-                    </div>
+                     
                 </div>
             </div>
 
@@ -128,14 +131,14 @@
             <div class="fieldset" id="fieldset5">
                 <h2>Submit</h2>
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success" data-target="fieldset6">Submit</button>
                 </div>
             </div>
 
             <div class="fieldset" id="fieldset6">
-                <h2>Final Score</h2>
+                <h2>Your Score</h2>
                 <div id="finalScoreContainer" class="text-center my-4"></div>
-                <h2>Score Table</h2>
+                <h2>Score Table of users</h2>
                 <table class="table">
                     <thead>
                         <tr>
