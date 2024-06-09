@@ -155,6 +155,69 @@
         </form>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const maxPlays = 5;
+    const playsLeftKey = 'playsLeft';
+
+    function getPlaysLeft() {
+        return localStorage.getItem(playsLeftKey) ? parseInt(localStorage.getItem(playsLeftKey)) : maxPlays;
+    }
+
+    function updatePlaysLeft(playsLeft) {
+        localStorage.setItem(playsLeftKey, playsLeft);
+        document.getElementById('chancesLeft').innerText = `You have ${playsLeft} chances left.`;
+    }
+
+    function checkPlaysLeft() {
+        const playsLeft = getPlaysLeft();
+        if (playsLeft <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You have reached the maximum number of plays allowed.',
+            });
+            return false;
+        }
+        return true;
+    }
+
+    function decreasePlaysLeft() {
+        let playsLeft = getPlaysLeft();
+        playsLeft--;
+        updatePlaysLeft(playsLeft);
+    }
+
+    // Initialize plays left on page load
+    updatePlaysLeft(getPlaysLeft());
+
+    // Add event listener to the form submission or game completion
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission for demonstration purposes
+        if (checkPlaysLeft()) {
+            // Simulate game completion
+            decreasePlaysLeft();
+            // Continue with form submission or game logic
+            // For example: this.submit();
+            Swal.fire('Good job!', 'You have completed a game.', 'success');
+        }
+    });
+
+    // Add event listener to the start game button
+    document.querySelectorAll('.card[data-target="fieldset2"]').forEach(card => {
+        card.addEventListener('click', function() {
+            if (!checkPlaysLeft()) {
+                return;
+            }
+            // Continue with the logic to start the game
+            document.getElementById('fieldset1').classList.remove('active');
+            document.getElementById('fieldset2').classList.add('active');
+        });
+    });
+});
+
+    </script>
+
     <!-- jQuery, Bootstrap JS and SweetAlert2 JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
