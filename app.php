@@ -15,7 +15,7 @@ $username = $_SESSION['username'];
 
 // Display the user's ID and username (for demonstration purposes)
 echo "User ID: " . $id . "<br>";
-echo "Username: " . $username . "<br>";
+echo "Welcoeme: " . $username . "<br>";
 
 // You can add more functionality here as needed, such as displaying the user's score
 ?>
@@ -265,7 +265,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch sample data from the database
-$sql = "SELECT id, username, score, created_at FROM users";
+$sql = "SELECT id, username, score, count, created_at FROM users";
 $result = $conn->query($sql);
 
 $sampleData = [];
@@ -402,24 +402,26 @@ $conn->close();
             });
 
             function populateScoreTable(data) {
-                const tableBody = document.getElementById('scoreTableBody');
-                tableBody.innerHTML = '';
+    const tableBody = document.getElementById('scoreTableBody');
+    tableBody.innerHTML = '';
 
-                data.sort((a, b) => b.score - a.score);
+    // Sort the data array in ascending order based on score
+    data.sort((a, b) => b.score - a.score);
 
-                data.forEach((item, index) => {
-                    const row = `
-                        <tr class="${index < 3 ? 'highlight' : ''}">
-                            <td>${item.id}</td>
-                            <td>${item.username}</td>
-                            <td>${item.score}</td>
-                            <td>${item.count}</td>
-                            <td>${item.created_at}</td>
-                        </tr>
-                    `;
-                    tableBody.innerHTML += row;
-                });
-            }
+    data.forEach((item, index) => {
+        const row = `
+            <tr class="${index < 3 ? 'highlight' : ''}">
+                <td>${item.id}</td>
+                <td>${item.username}</td>
+                <td>${item.score}</td>
+                <td>${item.count}</td>
+                <td>${item.created_at}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
+
 
             function displayFinalScore() {
                 const finalScoreContainer = document.getElementById('finalScoreContainer');
