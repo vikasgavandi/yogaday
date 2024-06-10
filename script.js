@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let score = 0; // Variable to store the score
     let chances = 5; // Variable to store the remaining chances
 
+    console.log(score)
+    console.log(chances)
+
+    // Function to handle the next button click event
     const sampleData = [
         { id: 1, username: 'JohnDoe', score: 85, timestamp: '2024-06-01 10:30:00' },
         { id: 2, username: 'JaneSmith', score: 92, timestamp: '2024-06-02 09:45:00' },
@@ -103,9 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
-
-        
 
     nextButtons.forEach(button => {
         button.addEventListener('click', function () {

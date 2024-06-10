@@ -1,3 +1,16 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Start or resume the session
+session_start();
+
+// Check if there is an error message in the URL
+$error = isset($_GET['error']) ? $_GET['error'] : '';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,9 +55,12 @@ body {
     margin-bottom: 20px;
 }
 
-.btn-primary {
+.btn-primary { 
+    width: 80%;
+    padding-left : 20px;
     background-color: #A3238F;
     border: 1px solid #A3238F;
+    margin-left: 30px;
 }
 
 .btn-primary:hover {
